@@ -28,7 +28,7 @@ export default function ArtWorkCardDetail({ objectID }) {
                             {data.artistDisplayName ?
                                 <span>
                                     <p>Artist: {data.artistDisplayName} &nbsp;
-                                    <a href={data.artistWikidata_URL} target="_blank" rel="noreferrer" >wiki</a>
+                                    {data.artistWikidata_URL && <a href={data.artistWikidata_URL} target="_blank" rel="noreferrer" >wiki</a>}
                                     </p>
                                 </span>
                                 : <p>N/A</p>}
