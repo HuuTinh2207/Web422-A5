@@ -10,7 +10,7 @@ export default function Search() {
             searchBy: "",
             geoLocation: "",
             medium: "",
-            isOnView: true,
+            isOnView: false,
             isHighlight: false,
             q: ""
         }
