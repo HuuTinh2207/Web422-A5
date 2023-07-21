@@ -1,10 +1,10 @@
 /*********************************************************************************
-*  WEB422 – Assignment 4
+*  WEB422 – Assignment 5
 *  I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
 *  No part of this assignment has been copied manually or electronically from any other source
 *  (including web sites) or distributed to other students.
 * 
-*  Name: Huu Tinh Luu Student ID: 152712196  Date: 7/7/2023
+*  Name: Huu Tinh Luu Student ID: 152712196  Date: 7/21/2023
 *  Netlify Link: https://melodic-youtiao-9f39b3.netlify.app
 *
 ********************************************************************************/ 
@@ -13,6 +13,7 @@
 import React from "react";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import '@/styles/Home.module.css'
+
 
 export default function Home() {
     return (

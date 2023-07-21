@@ -24,7 +24,7 @@ export default function ArtWorkCard({ objectID }) {
                             {data.medium ? <p>{data.medium}</p> : <p>N/A</p>}
                             <Link passHref legacyBehavior href={`/artwork/${objectID}`}>
                                 <div>
-                                <Button variant="primary">{objectID}</Button>
+                                <Button variant="primary">ID: {objectID}</Button>
                                 </div>
                             </Link>
                         </Card.Text>

@@ -2,9 +2,13 @@ import React from "react";
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Pagination, Card, Form, Button } from 'react-bootstrap';
+import { useAtom } from "jotai";
+import { searchHistoryAtom } from "@/store";
 
 export default function Search() {
     const router = useRouter();
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             searchBy: "",
@@ -25,6 +29,7 @@ export default function Search() {
         queryString += `&isHighlight=${encodeURIComponent(data.isHighlight)}`;
         queryString += `&q=${encodeURIComponent(data.q)}`;
 
+        setSearchHistory(current => [...current, queryString]); 
         router.push(`artwork?${queryString}`);
     }
 
