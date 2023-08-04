@@ -10,18 +10,20 @@ import Card from 'react-bootstrap/Card';
 export default function Favorite() {
     const [favorites, setFavorites] = useAtom(favoritesAtom);
     let [artWorkList, setArtWorkList] = useState([]);
-
+    
     useEffect(() => {
         setArtWorkList(favorites);
     }, []);
+    
+    if(!favorites) return null;
 
     return (
         <>
             <Container>
-                {artWorkList.length > 0 ? (
+                {favorites ? (
                     <>
                         <Row className="gy-4">
-                            {artWorkList.map((currentObjectID) => (
+                            {favorites.map((currentObjectID) => (
                                 <Col lg={3} key={currentObjectID}>
                                     <ArtWorkCard objectID={currentObjectID} />
                                 </Col>

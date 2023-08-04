@@ -3,22 +3,27 @@ import useSWR from 'swr';
 import Error from 'next/error';
 import { Card, Container } from 'react-bootstrap';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { favoritesAtom } from '@/store';
 import { Button } from 'react-bootstrap';
+import { addToFavourites, removeFromFavourites } from '@/lib/userData';
 
 export default function ArtWorkCardDetail({ objectID }) {
     const { data, error } = useSWR(objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}` : null);
     //Atom
     const [favorites, setFavorites] = useAtom(favoritesAtom);
-    const [showAdded, setShowAdded] = useState(favorites.includes(objectID) ? true : false);
+    const [showAdded, setShowAdded] = useState(false);
 
-    function favoritesClicked() {
+    useEffect(() => {
+        setShowAdded(favorites?.includes(objectID));
+    }, [favorites, objectID]);
+
+    async function favoritesClicked() {
         if (showAdded) {
-            setFavorites(current => current.filter(fav => fav != objectID));
+            setFavorites(await removeFromFavourites(objectID));
             setShowAdded(false);
         } else {
-            setFavorites(current => [...current, objectID]);
+            setFavorites(await addToFavourites(objectID));
             setShowAdded(true);
         }
     }

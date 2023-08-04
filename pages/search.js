@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Container, Row, Col, Pagination, Card, Form, Button } from 'react-bootstrap';
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
+import { addToHistory } from '@/lib/userData'
 
 export default function Search() {
     const router = useRouter();
@@ -20,7 +21,7 @@ export default function Search() {
         }
     });
 
-    function submitForm(data) {
+    async function submitForm(data) {
         let queryString = "";
         queryString += `${data.searchBy}=true`;
         queryString += data.geoLocation && `&geoLocation=${encodeURIComponent(data.geoLocation)}`;
@@ -29,7 +30,7 @@ export default function Search() {
         queryString += `&isHighlight=${encodeURIComponent(data.isHighlight)}`;
         queryString += `&q=${encodeURIComponent(data.q)}`;
 
-        setSearchHistory(current => [...current, queryString]); 
+        setSearchHistory(await addToHistory(queryString)); 
         router.push(`artwork?${queryString}`);
     }
 
