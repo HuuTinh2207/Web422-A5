@@ -20,7 +20,7 @@ export default function Favorite() {
     return (
         <>
             <Container>
-                {favorites ? (
+                {favorites?.length > 0 ? (
                     <>
                         <Row className="gy-4">
                             {favorites.map((currentObjectID) => (
